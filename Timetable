@@ -1,0 +1,74 @@
+Manuel Schultheiss
+27.10     11:00-11:45 (0.75h)     Database Setup Script, Git Setup and Samurai Setup
+28.10     2h              basic css and signup page
+28.10     2h              header, footer, tan generation, validation stuff at signup
+31.10     3h 		  made it work in samurai vm and php 5.3 compatible, used mysqli interface instead of native interface, minor bugfixes
+31.10 	  0.5h            transaction view and sql query
+1.11      1h              Approve transactions ...
+1.11      1h              ...and users
+2.11      1.5h            PHP Sendmail, TAN auto approval
+2.11      1.5h            PDF output, transaction view updated (including getting PDFLib to run)
+2.11      1h              TAN codes unique, refactoring of TAN generation
+2.11      1h              Balance update after transaction, display balance, small bugfixes
+2.11      1h              started presentation 
+PHASE 2:
+5.11	2h Some Burp Suite testing, TeX preperations and took some notes on OTG-CONFIG-005
+19.11   2h TeX and OTG-CONFIG-005
+19.11   1h OTG-AUTHN-001
+19.11   1h OTG-CLIENT-001
+21.11 	1h OTG-AUTHN-3, OTG-IDENT-2 
+21.11 	2h OTG-IDENT4, OTG-IDENT-5
+21.11 	2h ZAP testing
+22.11   1.5h OTG-ERR-001 and OTG-IDENT-001
+22.11   1h OTG-CONFIG-3, OTG-CONFIG-6, OTG-CONFIG-7, OTG-CONFIG-8
+22.11   2h OTG-SESS-{1,2,3,4,5,6,7,8}
+22.11   2h OTG-INTVAL section
+22.11   1h reformatting and started to add impact and discovery for each vurlnerability
+23.11   1.5h added more discovery liklihood impact
+23.11   2h authn003, OTG-INPVAL-00{1,2, 3, 5} for tu bank,  table of content and many other changes
+23.11   1h minor fixes and started executive summary
+24.11   1h merging and comparision
+PHASE 3
+4.12   2h xss and sql injections fix, inpval001, inpval002, otg-client{1,2,3} 
+4.12   2h INPVAL3, INPVAL4
+4.12   1h ERR001, BUSLOGIC-001
+4.12   1.5h tex overhaul, SSL certificate
+5.12   1.5h password protected pdf generation,searched and added new library for password protection
+5.12   2h  transactions adapted and refactored for scs, signup adapted for scs
+5.12   1.5h c fileparser fix, batchfile fix, download link for scs
+6.12   1h transaction fixes
+6.12   1h Configuration and idenity management vulnerabilities fixed
+
+Pawelka	27.10 4h Setup, DB Layout/Setup, C-fileparser connection to PHP
+Pawelka 29.10 4h Layout, new transaction
+Pawelka 02.11 2h Layout, transaction upload
+
+Jaros	27.10 4h Setup, DB Layout/Setup, C-fileparser
+Jaros	2.11 7h Setup, C-fileparser...
+Jaros   7.11 2h Install metasploit and test against wmap
+Jaros   8.11 1h SQLInjectMe plugin firefox
+Jaros   8.11 1h Grendel scanner -> Found maybe CSRF vulnerability
+
+Tornike Kikalishvili
+13.10-20.10 8h learning PHP
+29.10 4h making login.php and login.html
+
+Phase 2:
+2h OTG-AUTHN-004 - Testing for bypassing authentication schema
+20m OTG-AUTHN-007 - Testing for Weak password policy
+40m OTG-AUTHZ-001 Testing Directory traversal/file include
+2h OTG-AUTHZ-002 Testing for bypassing authentication schema
+30m OTG-BUSLOGIC-001 - Test Business Logic Data Validation
+1h OTG-BUSLOGIC-002 - Test Ability to Forge Requests
+1h OTG-BUSLOGIC-003 - Test Integrity Checks
+15m OTG-BUSLOGIC-004 - Test for Process Timing
+Report about our VM
+10m OTG-AUTHN-002 - Testing for default credentials
+5m OTG-AUTHN-003 - Weak lock out mechanism
+1h OTG-AUTHN-004 - Testing for bypassing authentication schema
+15m OTG-AUTHN - 006 Testing for Browser cache weakness
+5m OTG-AUTHN - 007 Weak Password Policy
+2h OTG-AUTHZ-001 
+
+20m Demo Videos
+15m Preparing Presentation

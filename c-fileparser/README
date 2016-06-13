@@ -1,0 +1,10 @@
+gcc fileparser.c -o fileparser  `mysql_config --cflags --libs`
+
+transactions format: sourceID,targetID,TAN,Amount
+
+
+Setup:
+sudo apt-get install libmysqlclient-dev
+
+on fedora linux:
+sudo dnf install mysql++-devel.x86_64 

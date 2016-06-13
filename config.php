@@ -2,10 +2,9 @@
 /**
  * Establish the connection to the database.
  */
-$DATABASE_HOST=;
-$DATABASE_NAME=;
-$DATABASE_USERNAME=;
-$DATABASE_PASSWORD=;
-$DATABASE=;
+$DATABASE_HOST='192.168.1.2';
+$DATABASE_NAME='db_team10';
+$DATABASE_USERNAME='team10';
+$DATABASE_PASSWORD='Team10_pwd';
 ?>
 

@@ -7,30 +7,30 @@ $conn = connectDB ();
 // var_dump ( $output );
 
 if (isset ( $_POST ["submit"] )) {
-	$allUsersQuery = $conn->query ( "SELECT * FROM users WHERE uname='" . mysql_real_escape_string ( $_POST ["recipient"] ) . "'" );
+	$allUsersQuery = $conn->query ( sprintf( "SELECT * FROM users WHERE uname='" . $_POST ["recipient"] . "'" ) );
 	
 	$amountValid = is_numeric ( $_POST ["amount"] );
 	
 	$recipientId = "0";
 	$userValid = false;
 	while ( $row = $allUsersQuery->fetch_assoc () ) {
-		if ($row ["uname"] == $_POST ["recipient"]) {
-			$userValid = true;
+		if ($row ["uname"] === $_POST ["recipient"]) {
+			$userValid = 1;
 			$recipientId = $row ["uid"];
 			break;
 		}
 	}
 	
 	$tan = array ();
-	$tanValid = false;
+	$tanValid = 0;
 	
 	$select = $conn->query ( sprintf ( "SELECT uid, value FROM tans WHERE uid=" . intval ( $_SESSION ["uid"] ) . " AND value='%s'", mysql_real_escape_string ( $_POST ["tan"] ) ) );
 	
 	if (mysqli_num_rows ( $select ) == 1)
-		$tanValid = true;
+		$tanValid = 1;
 		
 	if (doubleval($_POST ["amount"]) < 0)
-		$tanValid = false;
+		$tanValid = 0;
 	
 	if ($amountValid && $userValid && $_POST ["amount"]>=0 && $_SESSION["isBanker"]) {	
 				

@@ -3,7 +3,7 @@ require ("core.php");
 
 $BANK_TITEL = "Home";
 include_once ("layout/header.php");
-//include_once ("setup/setup.php"); <--Uncomment if you want to run the database setup or refresh/revert it
+include_once ("setup/setup.php"); //<--Uncomment if you want to run the database setup or refresh/revert it
 ?>
 
 <div style="padding: 32px; color:red;">

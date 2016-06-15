@@ -15,16 +15,15 @@ function transact( $targetName, $amount, $tan, $conn) {
 	$balance = 0;
 	$meQuery = $conn->query ( "SELECT balance FROM users WHERE uid=" .$_SESSION["uid"]);
 	while ( $row = $meQuery->fetch_assoc () ) { $balance = $row ["balance"]; }
-	
 		
-	$allUsersQuery = $conn->query ( "SELECT * FROM users WHERE uname='" . mysql_real_escape_string ($targetName) . "'" );	
+	$allUsersQuery = $conn->query ( sprintf( "SELECT * FROM users WHERE uname='" .$targetName."'" ) );	
 	$amountValid = is_numeric ( $amount);
 	
 	$recipientId = "0";
 	$userValid = false;
 	$errStr = "";
 	while ( $row = $allUsersQuery->fetch_assoc () ) {
-		if ($row ["uname"] == $targetName) {
+		if ($row ["uname"] === $targetName) {
 			$userValid = true;
 			$recipientId = $row ["uid"];
 
@@ -112,12 +111,10 @@ if (isset ( $_POST ["submit"] )) {
 	}
 	else {
 		$tanValid = false;
-
-		$select = $conn->query ( sprintf ( "SELECT uid, value FROM tans WHERE uid=" . intval ( $_SESSION ["uid"] ) . " AND value='%s'", mysql_real_escape_string ( $_POST ["tan"] ) ) );
+		$select = $conn->query ( sprintf ( "SELECT uid, value FROM tans WHERE uid=" . intval ( $_SESSION ["uid"] ) . " AND value='%s'", $_POST ["tan"]  ) );
 
 		if (mysqli_num_rows ( $select ) == 1)
 			$tanValid = true;
-
 		if ($tanValid) {
 			$error = transact( $_POST ["recipient"], $_POST ["amount"],  $_POST ["tan"], $conn);
 			if ($error=="")

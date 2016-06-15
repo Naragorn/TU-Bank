@@ -28,15 +28,15 @@ function checkPassword($pwd){
  */
 function pdfEncrypt($origFile,  $destFile){
 
-$pdf =& new FPDI_Protection();
-$pdf->FPDF('P', 'in', array('6','9'));
-$pagecount = $pdf->setSourceFile($origFile);
-$tplidx = $pdf->importPage(1);
-$pdf->addPage();
-$pdf->useTemplate($tplidx);
-$pdf->SetProtection(array(),'tubank');
-$pdf->Output($destFile, 'F');
-return $destFile;
+//$pdf = new FPDI_Protection();
+//$pdf->FPDF('P', 'in', array('6','9'));
+//$pagecount = $pdf->setSourceFile($origFile);
+//$tplidx = $pdf->importPage(1);
+//$pdf->addPage();
+//$pdf->useTemplate($tplidx);
+//$pdf->SetProtection(array(),'tubank');
+//$pdf->Output($destFile, 'F');
+//return $destFile;
 }
 
 /*
@@ -75,7 +75,7 @@ function insertTansForUser($userId, $conn2, $receiverMail="") {
 	if ($receiverMail == "")
 		$receiverMail = $_POST["email"];
 	
-	$emailMessage = "Welcome, your tans are: \n\n\n"; // NO HTML PLEASE!!! As also used in the PDF file!
+	$emailMessage = "Welcome, your TANs are: <br><br><br>\n\n\n"; // NO HTML PLEASE!!! As also used in the PDF file!
 	$tans = array();
 					
 	// Insert 100 codes into database
@@ -104,16 +104,15 @@ function insertTansForUser($userId, $conn2, $receiverMail="") {
 			}
 		}	
 
-		$emailMessage .= $tan."\n";
+		$emailMessage .= $tan."<br>"."\n";
 		$tans[] = $tan;
 	}
-
 
 	//
 	// Make PDF
 	//
 
-	$p = PDF_new (); // Note: PDF Generation code taken from PHP documentation: http://php.net/manual/de/pdf.examples-basic.php
+//	$p = PDF_new (); // Note: PDF Generation code taken from PHP documentation: http://php.net/manual/de/pdf.examples-basic.php
 	
 	// Ususally we would use this to protect the pdf. Unfortunately we can only use it in the PDFLib Pro version:
 	//optlist = "masterpassword=tubank permissions={noprint nohiresprint nocopy noaccessible noassemble}" ;
@@ -121,41 +120,41 @@ function insertTansForUser($userId, $conn2, $receiverMail="") {
 	// So we will use the FPDI 
 	        
 		
-	if (PDF_begin_document ( $p, "", "") == 0) {
-		die ( "Error: " . PDF_get_errmsg ( $p ) );
-	}
-	
-	PDF_set_info ( $p, "Creator", "Group 2" );
-	PDF_set_info ( $p, "Author", "Group 2" );
-	PDF_set_info ( $p, "Title", "Transactions" );
-	PDF_begin_page_ext ( $p, 595, 842, "" );
-	$font = PDF_load_font ( $p, "Helvetica-Bold", "winansi", "" );
-	
-	PDF_setfont ( $p, $font, 24.0 );
-	PDF_set_text_pos ( $p, 50, 700 );
-	PDF_show ( $p, "TANS: " );
-	
-	PDF_setfont ( $p, $font, 12.0 );
-	PDF_continue_text ( $p, "-------------------------------" );
-	
-	$pageIndicator = 0;
-	
-	for($i = 0; $i<100; $i=$i+3) {
-		if ($i!=99)
-			PDF_continue_text ( $p, $tans[$i]."   ".$tans[$i+1]."   ".$tans[$i+2]);	
-		else
-			PDF_continue_text ( $p, $tans[$i]);	
-	}
-	PDF_end_page_ext ( $p, "" );
-	PDF_end_document ( $p, "" );
-	
-	$buf = PDF_get_buffer ( $p );
-	$len = strlen ( $buf );
-	
-	file_put_contents ("user.pdf", $buf);
-
-	PDF_delete ( $p );
-	pdfEncrypt("user.pdf", "user.pdf");
+//	if (PDF_begin_document ( $p, "", "") == 0) {
+//		die ( "Error: " . PDF_get_errmsg ( $p ) );
+//	}
+//	
+//	PDF_set_info ( $p, "Creator", "Group 2" );
+//	PDF_set_info ( $p, "Author", "Group 2" );
+//	PDF_set_info ( $p, "Title", "Transactions" );
+//	PDF_begin_page_ext ( $p, 595, 842, "" );
+//	$font = PDF_load_font ( $p, "Helvetica-Bold", "winansi", "" );
+//	
+//	PDF_setfont ( $p, $font, 24.0 );
+//	PDF_set_text_pos ( $p, 50, 700 );
+//	PDF_show ( $p, "TANS: " );
+//	
+//	PDF_setfont ( $p, $font, 12.0 );
+//	PDF_continue_text ( $p, "-------------------------------" );
+//	
+//	$pageIndicator = 0;
+//	
+//	for($i = 0; $i<100; $i=$i+3) {
+//		if ($i!=99)
+//			PDF_continue_text ( $p, $tans[$i]."   ".$tans[$i+1]."   ".$tans[$i+2]);	
+//		else
+//			PDF_continue_text ( $p, $tans[$i]);	
+//	}
+//	PDF_end_page_ext ( $p, "" );
+//	PDF_end_document ( $p, "" );
+//	
+//	$buf = PDF_get_buffer ( $p );
+//	$len = strlen ( $buf );
+//	
+//	file_put_contents ("user.pdf", $buf);
+//
+//	PDF_delete ( $p );
+//	pdfEncrypt("user.pdf", "user.pdf");
 	
 
 
@@ -163,9 +162,10 @@ function insertTansForUser($userId, $conn2, $receiverMail="") {
 	// Send email
 	//
 	$title = "Your TU Bank Account has been approved";
-	$emailmessage = "Your online Banking account at TU Bank has been generated!\nYou will find your TAN numbers In the attached PDF file.\n\n\nBest regards, \n\nTU Bank.";
-	$attachment = "user.pdf";
-	sendEmail($title, $emailmessage, $attachment, $receiverMail);
+	//$emailmessage = "Your online Banking account at TU Bank has been generated!\nYou will find your TAN numbers In the attached PDF file.\n\n\nBest regards, \n\nTU Bank.";
+//	$attachment = "user.pdf";
+	$attachment = "";
+	sendEmail($title, $emailMessage, $attachment, $receiverMail);
 }
 
 
@@ -185,20 +185,22 @@ function sendEmail($title, $emailMessage, $attachment, $receiverMail){
 
 
 	$mail = new PHPMailer;
+	//$mail->SMTPDebug = 3;
 	$mail->isSMTP();                                      // Set mailer to use SMTP
-	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->Host = 'mail.in.tum.de';
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = 'TUBankTeam2@gmail.com';		// SMTP username
-	$mail->Password = 'securecoding2';			// SMTP password
+	$mail->Username = 'yonis@in.tum.de';		// SMTP username
+	$mail->Password = 'deluxe89';			// SMTP password
+	$mail->Port = 587;
 	///$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-	$mail->From = 'tubankteam2@gmail.com';
-	$mail->FromName = 'TU Bank';
+	$mail->From = 'yonis@in.tum.de';
+	$mail->FromName = 'TU Bank by PSA Team10';
 	$mail->addAddress($receiverMail);               // Name is optional
-	$mail->addReplyTo('tubankteam2@gmail.com');
+	$mail->addReplyTo('yonis@in.tum.de');
 	$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 	$mail->isHTML(true);                                  // Set email format to HTML
 	if(strlen($attachment) > 0) $mail->AddAttachment($attachment);		//Attach the protected PDF
-	$mail->Subject = $subject;
+	$mail->Subject = $title;
 	$mail->Body    = $emailMessage;
 	$ret = -1;
 

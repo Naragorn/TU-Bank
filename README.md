@@ -11,7 +11,7 @@ Installation
 
 3. If you have multiple PHP versions activate only PHP5:
 
-    sudo a2dismod php7.0    # (7.0 or your current PHP version)
+    sudo a2dismod php7.0
     sudo a2enmod php5.6
     sudo service apache2 restart
 

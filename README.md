@@ -11,12 +11,10 @@ Installation
 
 3. If you have multiple PHP versions activate only PHP5:
 
-    # Apache
     sudo a2dismod php7.0    # (7.0 or your current PHP version)
     sudo a2enmod php5.6
     sudo service apache2 restart
 
-    # CLI
     sudo ln -sfn /usr/bin/php5.6 /etc/alternatives/php 
 4. Edit config.php for your database logins etc
 5. edit setup/setup.php to your preferences (the users that get created, emails...))
